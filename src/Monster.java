@@ -230,7 +230,7 @@ public class Monster extends Sprite {
 			case DEF : statMultipliers[DEF] = 1.3f; eliteType = "DEF"; break;
 			case DMG : statMultipliers[DMG] = 1.3f; eliteType = "DMG"; break;
 			case SPD : statMultipliers[SPD] = 1.3f; eliteType = "SPD"; break;
-			case SLOW: statMultipliers[DMG] = 1.3f; statMultipliers[DEF] = 1.3f; statMultipliers[SPD] = 0.7f; eliteType = "SLOW"; break;
+			case SLOW: statMultipliers[DMG] = 1.2f; statMultipliers[DEF] = 1.2f; statMultipliers[SPD] = 0.5f; eliteType = "SLOW"; break;
 			}
 			if(elite) allStatsMultiplier = 1.3f;
 		}
@@ -245,7 +245,7 @@ public class Monster extends Sprite {
 				case DEF : statMultipliers[DEF] = 1.3f; eliteType = "DEF"; eliteT = DEF; break;
 				case DMG : statMultipliers[DMG] = 1.3f; eliteType = "DMG"; eliteT = DMG; break;
 				case SPD : statMultipliers[SPD] = 1.3f; eliteType = "SPD"; eliteT = SPD; break;
-				case SLOW: statMultipliers[DMG] = 1.3f; statMultipliers[DEF] = 1.3f; statMultipliers[SPD] = 0.5f; eliteType = "SLOW"; eliteT = SLOW; break;
+				case SLOW: statMultipliers[DMG] = 1.2f; statMultipliers[DEF] = 1.2f; statMultipliers[SPD] = 0.5f; eliteType = "SLOW"; eliteT = SLOW; break;
 				}
 			} else {
 				eliteT = -1;
@@ -267,7 +267,7 @@ public class Monster extends Sprite {
 		}
 		
 		public int getExp() {
-			return (int)(exp*allStatsMultiplier);
+			return (int)(exp*allStatsMultiplier*allStatsMultiplier);
 		}
 		
 		// retourne la vie du monstre

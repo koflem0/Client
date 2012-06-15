@@ -436,7 +436,7 @@ public class Client extends JComponent
 								Vector<ReceivedEffect> temp2 = new Vector<ReceivedEffect>();
 								ReceivedEffect re;
 								for(EffectData eff : dp.effect){
-									re = new ReceivedEffect(effectAnims[eff.type]);
+									re = new ReceivedEffect(m.effectAnimation(eff.type));
 									re.x=eff.x;re.y = eff.y; re.type=eff.type; re.setTime(eff.currentTime); re.active = eff.active;
 									temp2.add(re);
 								}
@@ -542,7 +542,13 @@ public class Client extends JComponent
 			w.addMouseListener(this);
 			w.addMouseMotionListener(this);
 		}
-
+		
+		public Animation effectAnimation(int i){
+			Animation a = effectAnims[i];
+			a.start();
+			return a;
+		}
+		
 		public void mainMenu()
 		{
 			clip.stop();
@@ -1954,7 +1960,6 @@ public class Client extends JComponent
 				{
 					if (effect.isActive())
 						effect.update(timePassed);
-					else effect.getAnimation().start();
 				}
 			}
 		}
@@ -1975,7 +1980,7 @@ public class Client extends JComponent
 
 							add(new Effect(new Point((int) projectile.skill
 									.getArea().getX(), (int) projectile.skill
-									.getArea().getY()), effectAnims[EXPLOARROW], EXPLOARROW, 150));
+									.getArea().getY()), effectAnimation(EXPLOARROW), EXPLOARROW, 150));
 							projectile.skill.hit(projectile.skill, 0);
 							try
 							{
@@ -2022,7 +2027,7 @@ public class Client extends JComponent
 
 							add(new Effect(new Point((int) projectile.skill
 									.getArea().getX(), (int) projectile.skill
-									.getArea().getY()), effectAnims[EXPLOARROW], EXPLOARROW, 150));
+									.getArea().getY()), effectAnimation(EXPLOARROW), EXPLOARROW, 150));
 							projectile.skill.hit(projectile.skill, 0);
 							try
 							{
@@ -3688,9 +3693,8 @@ public class Client extends JComponent
 			switch (skill)
 			{
 			case Explosion:
-				effectAnims[EXPLOSION].start();
 				skillEffect = new Effect(new Point(c.getX() + c.getWidth() / 2
-						- 250, c.getY() - 80), effectAnims[EXPLOSION], EXPLOSION, 500, true);
+						- 250, c.getY() - 80), m.effectAnimation(EXPLOSION), EXPLOSION, 500, true);
 				m.add(skillEffect);
 				break;
 			}
@@ -4064,7 +4068,7 @@ public class Client extends JComponent
 			}
 
 			m.add(new Effect(new Point((int) getArea().getX() - 40,
-					(int) getArea().getY() - 50), effectAnims[LVLUP],LVLUP, 1720));
+					(int) getArea().getY() - 50), m.effectAnimation(LVLUP),LVLUP, 1720));
 
 			stats.exp -= expToNextLvl();
 			stats.lvl++;
